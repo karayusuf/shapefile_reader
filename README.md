@@ -21,6 +21,13 @@ Each attribute record has a one-to-one relationship with the associated shape re
 
 ### Main File Header
 
+| Method Name | Description | Example Value |
+| --- | --- | --- |
+| file_code | File code (always hex value 0x0000270a)	| 9994 |
+| file_length | Size of the file, including the header, in bytes | 49915112 |
+| version | Version of the file | 1000 |
+| shape_type | The type of shape contained in the file. All shapes will either be the specified shape or null. You can see the list below to see what values map to what shapes. | 1 |
+
 ```
 reader = Shapefile::Reader.new(path_to_shapefile)
 reader.main_file_header
