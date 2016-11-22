@@ -1,12 +1,14 @@
-require_relative './models/main_file_header'
-require_relative './models/record_header'
-require_relative './models/shapes/polygon'
-require_relative './models/shapes/point'
+require_relative 'main_file_header'
+require_relative 'record_header'
 
-require 'pry'
+require_relative 'shapes/null'
+require_relative 'shapes/point'
+require_relative 'shapes/polygon'
+
+require 'pp'
 
 module Shapefile
-  class Parser
+  class Reader
 
     UNPACK_INTEGER = { big: 'N', little: 'V' }
     UNPACK_DOUBLE  = { big: 'G', little: 'E' }
@@ -14,24 +16,18 @@ module Shapefile
     BYTESIZE_INTEGER = 4
     BYTESIZE_DOUBLE = 8
 
-    attr_reader :file
+    attr_reader :file, :main_file_header
 
     def initialize(file)
       @file = file
+      @main_file_header = nil
     end
 
-    def parse
-      main_file_header = parse_main_file_header
-      first_entry = parse_record(100)
-      first_entry
-
-    #    headers = []
-    #    100.times.reduce(100) do |offset|
-    #      header, shape = parse_record(offset)
-    #      headers << [offset, header, shape]
-    #      header.content_length + offset + 8
-    #    end
+    def main_file_header
+      @main_file_header ||= parse_main_file_header
     end
+
+    private
 
     def parse_main_file_header
       main_file_header = MainFileHeader.new

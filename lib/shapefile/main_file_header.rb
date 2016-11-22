@@ -1,5 +1,3 @@
-require_relative './utils/model_attributes'
-
 module Shapefile
   class MainFileHeader
    attr_accessor :file_code

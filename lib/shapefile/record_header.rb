@@ -1,5 +1,3 @@
-require_relative './utils/model_attributes'
-
 module Shapefile
   class RecordHeader
     attr_accessor :record_number
