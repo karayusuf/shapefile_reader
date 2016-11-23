@@ -1,7 +1,12 @@
 module Shapefile
   module Shapes
     class Point
-      attr_accessor :x, :y
+      attr_reader :x, :y
+
+      def initialize(x, y)
+        @x = x
+        @y = y
+      end
     end
   end
 end

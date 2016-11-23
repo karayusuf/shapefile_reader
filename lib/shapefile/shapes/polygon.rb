@@ -45,14 +45,6 @@ module Shapefile
         @points = []
       end
 
-      def add_part(part)
-        @parts << part
-      end
-
-      def add_point(point)
-        @points << point
-      end
-
     end
   end
 end
